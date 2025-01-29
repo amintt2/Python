@@ -11,12 +11,15 @@ def graphe():
 
 
 def matrice_adjacente():
-    matrice = [[0, 1, 0, 1, 1, 0],
+    # Get the adjacency matrix from networkx
+    adj_matrix = nx.adjacency_matrix(G).todense()
+    return adj_matrix
+    matrice = ([[0, 1, 0, 1, 1, 0],
                [1, 0, 1, 1, 1, 1],
                [0, 1, 0, 1, 1, 1],
                [1, 1, 1, 0, 1, 0],
                [1, 1, 1, 1, 0, 0],
-               [0, 1, 1, 0, 0, 0]]
+               [0, 1, 1, 0, 0, 0]])
     return matrice
 
 
@@ -35,13 +38,17 @@ def matrice_adjacente():
 
 
 
-
-
-
 def main():
+    # Create the graph first
     graphe()
+    
+    # Now get the adjacency matrix
     matrice = matrice_adjacente()
-    # Add proper drawing configuration
+    print("Adjacency Matrix:")
+    for row in matrice:
+        print(row)
+    
+    # Draw the graph
     plt.figure(figsize=(8, 6))
     nx.draw(G, 
            node_color='lightblue',
